@@ -6,44 +6,67 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.napcity.launcherstudio.data.ThemeConfig
 
-// Base colors drawn from Dom's design library — Plasma Storm / Laser Grid family
-val NearBlack = Color(0xFF08001A)
-val HotMagenta = Color(0xFFFF00D4)
-val ElectricBlue = Color(0xFF0090FF)
-val NeonOrange = Color(0xFFFF6200)
-val SpringNeon = Color(0xFF00FFB3)
-val LaserCyan = Color(0xFF00F5FF)
-val HotPink = Color(0xFFFF0090)
-val VoltGreen = Color(0xFFCCFF00)
-val DeepVoid = Color(0xFF0D0D1A)
+/** Parse "#RRGGBB" or "#AARRGGBB" into a Compose Color */
+fun String.toComposeColor(): Color = try {
+    Color(android.graphics.Color.parseColor(this))
+} catch (_: Exception) {
+    Color.White
+}
 
-private val DarkColorScheme = darkColorScheme(
-    primary = HotMagenta,
-    secondary = LaserCyan,
-    tertiary = SpringNeon,
-    background = NearBlack,
-    surface = DeepVoid,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.White,
-    onSurface = Color.White
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = HotMagenta,
-    secondary = ElectricBlue,
-    tertiary = SpringNeon
-)
-
+/**
+ * Dynamic theme driven by a LauncherProject's ThemeConfig.
+ * Falls back to system dark/light when no project is active.
+ */
 @Composable
 fun LauncherStudioTheme(
+    theme: ThemeConfig? = null,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
-    MaterialTheme(
-        colorScheme = colorScheme,
-        content = content
-    )
+    val colorScheme = if (theme != null) {
+        val useDark = theme.darkTheme
+        if (useDark) {
+            darkColorScheme(
+                primary = theme.primary.toComposeColor(),
+                secondary = theme.secondary.toComposeColor(),
+                tertiary = theme.tertiary.toComposeColor(),
+                background = theme.background.toComposeColor(),
+                surface = theme.surface.toComposeColor(),
+                onPrimary = Color.White,
+                onSecondary = Color.Black,
+                onBackground = Color.White,
+                onSurface = Color.White
+            )
+        } else {
+            lightColorScheme(
+                primary = theme.primary.toComposeColor(),
+                secondary = theme.secondary.toComposeColor(),
+                tertiary = theme.tertiary.toComposeColor()
+            )
+        }
+    } else {
+        // Legacy fallback — Plasma Storm
+        if (darkTheme) {
+            darkColorScheme(
+                primary = Color(0xFFFF00D4),
+                secondary = Color(0xFF00F5FF),
+                tertiary = Color(0xFF00FFB3),
+                background = Color(0xFF08001A),
+                surface = Color(0xFF0D0D1A),
+                onPrimary = Color.White,
+                onSecondary = Color.Black,
+                onBackground = Color.White,
+                onSurface = Color.White
+            )
+        } else {
+            lightColorScheme(
+                primary = Color(0xFFFF00D4),
+                secondary = Color(0xFF0090FF),
+                tertiary = Color(0xFF00FFB3)
+            )
+        }
+    }
+    MaterialTheme(colorScheme = colorScheme, content = content)
 }
