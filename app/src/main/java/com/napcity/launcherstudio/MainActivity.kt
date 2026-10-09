@@ -72,7 +72,6 @@ class MainActivity : ComponentActivity() {
         val appWidgetId = widgetManager.allocateId()
         val intent = Intent(AppWidgetManager.ACTION_APPWIDGET_PICK).apply {
             putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
-            putExtra(AppWidgetManager.EXTRA_APPWIDGET_EXTRAS, Bundle())
         }
         pickWidgetLauncher.launch(intent)
     }

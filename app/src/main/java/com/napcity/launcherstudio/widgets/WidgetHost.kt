@@ -32,7 +32,7 @@ class WidgetManager(private val context: Context) {
     private val prefs = context.getSharedPreferences("launcher_widgets", Context.MODE_PRIVATE)
     val appWidgetHost = AppWidgetHost(context, WIDGET_HOST_ID)
     val appWidgetManager: AppWidgetManager =
-        context.getSystemService(Context.APP_WIDGET_SERVICE) as AppWidgetManager
+        context.getSystemService(Context.APPWIDGET_SERVICE) as AppWidgetManager
 
     fun startListening() {
         try { appWidgetHost.startListening() } catch (_: Exception) {}
