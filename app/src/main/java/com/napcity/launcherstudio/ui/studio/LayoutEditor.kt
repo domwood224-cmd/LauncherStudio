@@ -84,8 +84,30 @@ fun LayoutEditorTab(
         if (project.dock.enabled) {
             OptionRow("Dock style", DockStyle.values().map { it.name }) { selected ->
                 onProjectChange(project.copy(
-                    dock = project.dock.copy(style = DockStyle.valueOf(selected))
+                    dock = project.dock.copy(style = DockStyle.valueOf(selected), forgeVariant = "")
                 ))
+            }
+            Text(
+                "ForgeUI exclusive docks",
+                style = MaterialTheme.typography.bodyLarge
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                listOf(
+                    "" to "Standard",
+                    "floating-glass" to "Floating Glass",
+                    "aurora-pill" to "Aurora Pill",
+                    "neon-edge" to "Neon Edge"
+                ).forEach { (id, label) ->
+                    FilterChip(
+                        selected = project.dock.forgeVariant == id,
+                        onClick = {
+                            onProjectChange(project.copy(
+                                dock = project.dock.copy(forgeVariant = id)
+                            ))
+                        },
+                        label = { Text(label) }
+                    )
+                }
             }
             SliderRow(
                 label = "Dock slots",

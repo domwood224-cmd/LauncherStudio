@@ -23,7 +23,7 @@ data class LauncherProject(
     val icons: IconConfig = IconConfig()
 ) {
     companion object {
-        const val CURRENT_SCHEMA_VERSION = 2
+        const val CURRENT_SCHEMA_VERSION = 3
     }
 }
 
@@ -77,7 +77,9 @@ data class DockConfig(
     val enabled: Boolean = true,
     /** Number of dock slots (3-7) */
     val slots: Int = 5,
-    val style: DockStyle = DockStyle.BAR
+    val style: DockStyle = DockStyle.BAR,
+    /** ForgeUI exclusive dock variant: "" (none), "floating-glass", "aurora-pill", "neon-edge" */
+    val forgeVariant: String = ""
 )
 
 @Serializable

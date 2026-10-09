@@ -121,10 +121,19 @@ fun LauncherScreen(
 
             // Dock — driven by project dock config
             if (project?.dock?.enabled != false) {
-                DockBar(
-                    style = project?.dock?.style ?: DockStyle.BAR,
-                    onDrawerOpen = { drawerOpen = true }
-                )
+                val forgeVariant = project?.dock?.forgeVariant ?: ""
+                if (forgeVariant.isNotEmpty() && project != null) {
+                    com.napcity.launcherstudio.ui.forge.ForgeDock(
+                        variant = forgeVariant,
+                        theme = project.theme,
+                        onOpen = { drawerOpen = true }
+                    )
+                } else {
+                    DockBar(
+                        style = project?.dock?.style ?: DockStyle.BAR,
+                        onDrawerOpen = { drawerOpen = true }
+                    )
+                }
             } else {
                 Box(
                     modifier = Modifier.fillMaxWidth().height(24.dp)

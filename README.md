@@ -4,11 +4,9 @@ The best Android launcher generator. Build custom launchers from a massive libra
 
 Package: `com.napcity.launcherstudio`
 
-## v0.3.0 — Everything
+## v0.4.0 — ForgeUI integration
 
-- **Wallpapers**: 10 palette-matched neon wallpapers, picker + dim control
-- **Widgets**: full Android widget host on the home screen
-- **Gestures**: double-tap (lock screen via device admin), swipe actions
-- **Icon shapes**: circle, rounded, squircle, teardrop, system
-- **16 themes** from the design library
-- **Studio**: Projects / Theme / Wallpaper / Layout / Gestures / Preview tabs
+- **82 themes**: 16 Studio palettes + 66 ForgeUI curated themes (horror, neon, jewel, royal, retro, minimal, more)
+- **ForgeUI exclusive docks**: Floating Glass, Aurora Pill (animated), Neon Edge
+- Wallpapers, widgets, gestures, icon shapes from v0.3.0
+- Studio: Projects / Theme / Wallpaper / Layout / Gestures / Preview tabs
