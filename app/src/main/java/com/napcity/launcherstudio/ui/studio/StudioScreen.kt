@@ -11,6 +11,8 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Dashboard
 import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.Image
+import androidx.compose.material.icons.filled.TouchApp
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -44,7 +46,7 @@ fun StudioScreen(
         if (editingProject == null) editingProject = activeProject
     }
 
-    val tabs = listOf("Projects", "Theme", "Layout", "Preview")
+    val tabs = listOf("Projects", "Theme", "Wallpaper", "Layout", "Gestures", "Preview")
 
     Scaffold(
         topBar = {
@@ -60,7 +62,9 @@ fun StudioScreen(
                 val icons = listOf(
                     Icons.Default.Folder to "Projects",
                     Icons.Default.Palette to "Theme",
+                    Icons.Default.Image to "Wallpaper",
                     Icons.Default.Dashboard to "Layout",
+                    Icons.Default.TouchApp to "Gestures",
                     Icons.Default.Visibility to "Preview"
                 )
                 icons.forEachIndexed { i, (icon, label) ->
@@ -103,12 +107,24 @@ fun StudioScreen(
                     }
                 }
                 2 -> editingProject?.let {
-                    LayoutEditorTab(project = it) { updated ->
+                    WallpaperPickerTab(project = it) { updated ->
                         editingProject = updated
                         scope.launch { repository.saveProject(updated) }
                     }
                 }
                 3 -> editingProject?.let {
+                    LayoutEditorTab(project = it) { updated ->
+                        editingProject = updated
+                        scope.launch { repository.saveProject(updated) }
+                    }
+                }
+                4 -> editingProject?.let {
+                    GestureEditorTab(project = it) { updated ->
+                        editingProject = updated
+                        scope.launch { repository.saveProject(updated) }
+                    }
+                }
+                5 -> editingProject?.let {
                     StudioPreviewTab(project = it, onLaunchPreview = onLaunchPreview)
                 }
             }

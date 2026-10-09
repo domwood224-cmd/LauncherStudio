@@ -4,9 +4,11 @@ The best Android launcher generator. Build custom launchers from a massive libra
 
 Package: `com.napcity.launcherstudio`
 
-## v0.2.0 — The Studio
+## v0.3.0 — Everything
 
-- **Studio mode**: create launcher projects with theme picker (10 palettes from the design library), layout editor (grid, icons, drawer, dock)
-- **Launcher mode**: live launcher that applies the active project
-- **Project system**: versioned JSON schema, DataStore persistence, export/import
-- Tap the gear icon on the home screen to open the Studio
+- **Wallpapers**: 10 palette-matched neon wallpapers, picker + dim control
+- **Widgets**: full Android widget host on the home screen
+- **Gestures**: double-tap (lock screen via device admin), swipe actions
+- **Icon shapes**: circle, rounded, squircle, teardrop, system
+- **16 themes** from the design library
+- **Studio**: Projects / Theme / Wallpaper / Layout / Gestures / Preview tabs

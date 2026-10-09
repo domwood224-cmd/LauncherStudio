@@ -17,10 +17,13 @@ data class LauncherProject(
     val theme: ThemeConfig = ThemeConfig(),
     val layout: LayoutConfig = LayoutConfig(),
     val drawer: DrawerConfig = DrawerConfig(),
-    val dock: DockConfig = DockConfig()
+    val dock: DockConfig = DockConfig(),
+    val wallpaper: WallpaperConfig = WallpaperConfig(),
+    val gestures: GestureConfig = GestureConfig(),
+    val icons: IconConfig = IconConfig()
 ) {
     companion object {
-        const val CURRENT_SCHEMA_VERSION = 1
+        const val CURRENT_SCHEMA_VERSION = 2
     }
 }
 
@@ -82,4 +85,43 @@ enum class DockStyle {
     BAR,        // Classic bottom bar
     FLOATING,   // Floating pill
     HIDDEN      // Swipe-up only
+}
+
+@Serializable
+data class WallpaperConfig(
+    /** Drawable resource name (e.g. "wp_plasma_storm") or "none" for theme background */
+    val wallpaperId: String = "wp_plasma_storm",
+    /** Dim overlay 0-80% for readability */
+    val dimPercent: Int = 20
+)
+
+@Serializable
+data class GestureConfig(
+    val doubleTapAction: GestureAction = GestureAction.LOCK_SCREEN,
+    val swipeDownAction: GestureAction = GestureAction.OPEN_DRAWER,
+    val swipeUpAction: GestureAction = GestureAction.OPEN_DRAWER
+)
+
+@Serializable
+enum class GestureAction {
+    NONE,
+    LOCK_SCREEN,
+    OPEN_DRAWER,
+    OPEN_STUDIO
+}
+
+@Serializable
+data class IconConfig(
+    val shape: IconShape = IconShape.ROUNDED,
+    /** Corner radius percent for ROUNDED (0-50) */
+    val cornerRadius: Int = 28
+)
+
+@Serializable
+enum class IconShape {
+    CIRCLE,
+    ROUNDED,
+    SQUIRCLE,
+    TEARDROP,
+    SYSTEM      // No masking — app's own shape
 }

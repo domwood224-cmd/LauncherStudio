@@ -63,6 +63,36 @@ object BuiltInPalettes {
             "royal_noir", "Royal Noir",
             "Purple reign. Dark luxury.",
             ThemeConfig("royal_noir", "#9000FF", "#BF94E4", "#DA70FA", "#0A0014", "#140A24")
+        ),
+        Palette(
+            "cyber_mint", "Cyber Mint",
+            "Fresh voltage. Clean and electric.",
+            ThemeConfig("cyber_mint", "#00FFB3", "#00F5FF", "#FF00D4", "#02120C", "#0A1A14")
+        ),
+        Palette(
+            "blood_moon", "Blood Moon",
+            "Dark ritual. Red on black.",
+            ThemeConfig("blood_moon", "#FF003C", "#FF5C00", "#FFD400", "#0D0208", "#1A0A10")
+        ),
+        Palette(
+            "deep_ocean", "Deep Ocean",
+            "Bioluminescent depths.",
+            ThemeConfig("deep_ocean", "#00F5FF", "#0090FF", "#00FFB3", "#020A14", "#0A1420")
+        ),
+        Palette(
+            "toxic", "Toxic",
+            "Hazard stripes for your home screen.",
+            ThemeConfig("toxic", "#CCFF00", "#00FF66", "#FF00FF", "#0A0F02", "#141A08")
+        ),
+        Palette(
+            "candy", "Candy",
+            "Sweet but dangerous.",
+            ThemeConfig("candy", "#FF2DA1", "#FF6B9D", "#00E0D1", "#12040C", "#1E0A14")
+        ),
+        Palette(
+            "ghost", "Ghost",
+            "Pale signals in the dark.",
+            ThemeConfig("ghost", "#E0E0FF", "#A0A0CC", "#00F5FF", "#080810", "#101018")
         )
     )
 
