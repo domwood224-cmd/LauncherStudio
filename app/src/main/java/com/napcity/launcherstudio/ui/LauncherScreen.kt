@@ -70,7 +70,7 @@ fun LauncherScreen(
                         app = app,
                         iconSizeDp = iconSize,
                         showLabel = showLabels,
-                        onClick = { repository.launch(it) }
+                        onClick = { repository.launch(app) }
                     )
                 }
             }
